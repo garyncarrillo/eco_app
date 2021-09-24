@@ -20,6 +20,11 @@
     <%= form.label :email %>
     <%= form.email_field :email %>
   </div>
+  <select name="role" id="role">
+    <option value="admin">Admin</option>
+    <option value="user">User</option>
+    <option value="mananger">Mananger</option>
+  </select>
 
   <div class="actions">
     <%= form.submit %>

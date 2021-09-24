@@ -1,7 +1,7 @@
 class Admin::UsersController < ApplicationController
   before_action :set_post, only: %i[ edit ]
   def index
-    @users = User.user
+    @users = User.all
   end
 
   def new
@@ -9,10 +9,11 @@ class Admin::UsersController < ApplicationController
   end
 
   def create
-    @user = User.user.new(name: params[:name], email: params[:email])
+    @user = User.new(name: params[:name], email: params[:email], role: params[:role])
 
     respond_to do |format|
       if @user.save
+        # @user.invite!
        format.html {
          redirect_to controller: 'users', action: 'show', id: @user.id
        }
@@ -23,7 +24,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def update
-    @user = User.user.find(params[:id])
+    @user = User.find(params[:id])
 
     if @user.update(user_params)
       redirect_to controller: 'users', action: 'show', id: @user.id
@@ -33,7 +34,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.user.find(params[:id])
+    @user = User.find(params[:id])
     @user.destroy
 
     respond_to do |format|
@@ -43,16 +44,16 @@ class Admin::UsersController < ApplicationController
   end
 
   def show
-    @user = User.user.find(params[:id])
+    @user = User.find(params[:id])
   end
 
   private
 
   def set_post
-    @user = User.user.find(params[:id])
+    @user = User.find(params[:id])
   end
 
   def user_params
-     params.require(:user).permit(:name, :email)
+     params.require(:user).permit(:name, :email, :role)
   end
 end
