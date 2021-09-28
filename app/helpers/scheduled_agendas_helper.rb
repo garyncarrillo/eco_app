@@ -1,0 +1,2 @@
+module ScheduledAgendasHelper
+end

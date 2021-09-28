@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @scheduled_agenda.address %>
+</p>
+
+<p>
+  <strong>Contact name:</strong>
+  <%= @scheduled_agenda.contact_name %>
+</p>
+
+<p>
+  <strong>Contact email:</strong>
+  <%= @scheduled_agenda.contact_email %>
+</p>
+
+<p>
+  <strong>Contact phone number:</strong>
+  <%= @scheduled_agenda.contact_phone_number %>
+</p>
+
+<p>
+  <strong>Scheduled date:</strong>
+  <%= @scheduled_agenda.scheduled_date %>
+</p>
+
+<%= link_to 'Edit', edit_scheduled_agenda_path(@scheduled_agenda) %> |
+<%= link_to 'Back', scheduled_agendas_path %>

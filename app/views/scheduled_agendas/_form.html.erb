@@ -1,0 +1,42 @@
+<%= form_with(model: scheduled_agenda) do |form| %>
+  <% if scheduled_agenda.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(scheduled_agenda.errors.count, "error") %> prohibited this scheduled_agenda from being saved:</h2>
+
+      <ul>
+        <% scheduled_agenda.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :address %>
+    <%= form.text_field :address %>
+  </div>
+
+  <div class="field">
+    <%= form.label :contact_name %>
+    <%= form.text_field :contact_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :contact_email %>
+    <%= form.text_field :contact_email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :contact_phone_number %>
+    <%= form.text_field :contact_phone_number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :scheduled_date %>
+    <%= form.date_select :scheduled_date %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

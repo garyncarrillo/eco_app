@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Scheduled Agendas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Address</th>
+      <th>Contact name</th>
+      <th>Contact email</th>
+      <th>Contact phone number</th>
+      <th>Scheduled date</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @scheduled_agendas.each do |scheduled_agenda| %>
+      <tr>
+        <td><%= scheduled_agenda.address %></td>
+        <td><%= scheduled_agenda.contact_name %></td>
+        <td><%= scheduled_agenda.contact_email %></td>
+        <td><%= scheduled_agenda.contact_phone_number %></td>
+        <td><%= scheduled_agenda.scheduled_date %></td>
+        <td><%= link_to 'Show', scheduled_agenda %></td>
+        <td><%= link_to 'Edit', edit_scheduled_agenda_path(scheduled_agenda) %></td>
+        <td><%= link_to 'Destroy', scheduled_agenda, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Scheduled Agenda', new_scheduled_agenda_path %>
