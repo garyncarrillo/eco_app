@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :scheduled_agendas
+  resources :scheduled_agendas do
+    member do
+      post :add_product
+    end
+  end
   resources :products
 
   #devise config

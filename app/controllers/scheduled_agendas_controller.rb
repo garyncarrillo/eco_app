@@ -56,6 +56,18 @@ class ScheduledAgendasController < ApplicationController
     end
   end
 
+  def add_product
+    scheduled_agenda = ScheduledAgenda.find(params[:id])
+
+    collect = Collect.new(scheduled_agenda_id: scheduled_agenda.id, product_id: params[:collect][:product_id])
+
+    if collect.save
+      render json: { collect: collect, product: collect.product }, status: 200
+    else
+      render json: { errors: collect.errors.messages }, status: 406
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_scheduled_agenda
@@ -65,5 +77,9 @@ class ScheduledAgendasController < ApplicationController
     # Only allow a list of trusted parameters through.
     def scheduled_agenda_params
       params.require(:scheduled_agenda).permit(:address, :contact_name, :contact_email, :contact_phone_number, :scheduled_date)
+    end
+
+    def collect_params
+      params.require(:collect).permit(:product_id)
     end
 end
