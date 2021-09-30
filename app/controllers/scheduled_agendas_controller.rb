@@ -72,6 +72,11 @@ class ScheduledAgendasController < ApplicationController
     ScheludedAgendaMailer.remember(params[:id]).deliver_now
   end
 
+  def score
+    scheduled_agenda = ScheduledAgenda.find(params[:id])
+    scheduled_agenda.quality
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_scheduled_agenda

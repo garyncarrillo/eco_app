@@ -32,6 +32,9 @@
 <button id="button-remember">Recordatorio</button>
 <br/>
 <br>
+<button id="button-score">Liquidar</button>
+<br/>
+<br>
 <table>
   <thead>
     <tr>
@@ -146,6 +149,20 @@
     });
   }
 
+  function scoreScheduledAgenda () {
+    $.ajax({
+      url: '/scheduled_agendas/'+$('#scheduled-agenda-id').val()+'/score',
+      type: 'POST',
+      dataType: 'json',
+      success: function(data) {
+        console.log("todo ok ", data);
+      },
+      error: function(data) {
+        console.log("error ", data);
+      },
+    });
+  }
+
   $(document).ready(function(){
     loadProduct();
   });
@@ -165,7 +182,10 @@
   });
 
   $('#button-remember').on('click', function() {
-    alert("recordar...")
     rememberScheduledAgenda();
+  });
+
+  $('#button-score').on('click', function() {
+    scoreScheduledAgenda();
   });
 </script>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_30_015726) do
+ActiveRecord::Schema.define(version: 2021_09_30_023908) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,18 @@ ActiveRecord::Schema.define(version: 2021_09_30_015726) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "category_id"
     t.index ["category_id"], name: "index_products_on_category_id"
+  end
+
+  create_table "scheduled_agenda_scores", force: :cascade do |t|
+    t.bigint "scheduled_agenda_id", null: false
+    t.bigint "product_id", null: false
+    t.decimal "score"
+    t.decimal "rate"
+    t.decimal "total"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_scheduled_agenda_scores_on_product_id"
+    t.index ["scheduled_agenda_id"], name: "index_scheduled_agenda_scores_on_scheduled_agenda_id"
   end
 
   create_table "scheduled_agendas", force: :cascade do |t|
@@ -83,4 +95,6 @@ ActiveRecord::Schema.define(version: 2021_09_30_015726) do
   add_foreign_key "collects", "products"
   add_foreign_key "collects", "scheduled_agendas"
   add_foreign_key "products", "categories"
+  add_foreign_key "scheduled_agenda_scores", "products"
+  add_foreign_key "scheduled_agenda_scores", "scheduled_agendas"
 end
