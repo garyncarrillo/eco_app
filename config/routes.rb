@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :categories
   resources :scheduled_agendas do
     member do
       post :add_product

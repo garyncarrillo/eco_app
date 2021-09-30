@@ -36,6 +36,10 @@
     <%= form.text_area :observation %>
   </div>
 
+  <div class="field">
+    <%= select("product", "category_id", Category.all.collect {|p| [ p.name, p.id ] }, { include_blank: true })%>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
