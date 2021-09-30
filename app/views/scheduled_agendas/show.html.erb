@@ -29,6 +29,8 @@
 <button class="show-btn">Add product</button>
 <br>
 <br>
+<button id="button-remember">Recordatorio</button>
+<br/>
 <br>
 <table>
   <thead>
@@ -130,6 +132,20 @@
     });
   }
 
+  function rememberScheduledAgenda () {
+    $.ajax({
+      url: '/scheduled_agendas/'+$('#scheduled-agenda-id').val()+'/remember',
+      type: 'POST',
+      dataType: 'json',
+      success: function(data) {
+        console.log("todo ok ", data);
+      },
+      error: function(data) {
+        console.log("error ", data);
+      },
+    });
+  }
+
   $(document).ready(function(){
     loadProduct();
   });
@@ -146,5 +162,10 @@
 
   $('#dialog-close').on('click', function() {
     $('#dialog').hide();
+  });
+
+  $('#button-remember').on('click', function() {
+    alert("recordar...")
+    rememberScheduledAgenda();
   });
 </script>

@@ -68,6 +68,10 @@ class ScheduledAgendasController < ApplicationController
     end
   end
 
+  def remember
+    ScheludedAgendaMailer.remember(params[:id]).deliver_now
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_scheduled_agenda
