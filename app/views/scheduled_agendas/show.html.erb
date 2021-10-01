@@ -25,14 +25,18 @@
   <%= @scheduled_agenda.scheduled_date %>
 </p>
 
+<% if current_user.role === User::ROLE_USER %>
+  <button class="show-btn">Add product</button>
+<% end %>
 
-<button class="show-btn">Add product</button>
-<br>
-<br>
-<button id="button-remember">Recordatorio</button>
-<br/>
-<br>
-<button id="button-score">Liquidar</button>
+<% if current_user.role === User::ROLE_ADMIN %>
+  <br>
+  <br>
+  <button id="button-remember">Recordatorio</button>
+  <br/>
+  <br>
+  <button id="button-score">Liquidar</button>
+<% end %>
 <br/>
 <br>
 <table>
@@ -67,6 +71,10 @@
 <br>
 <%= link_to 'Edit', edit_scheduled_agenda_path(@scheduled_agenda) %> |
 <%= link_to 'Back', scheduled_agendas_path %>
+
+<br/>
+<br/>
+<%= link_to 'Home', root_path %>
 
 
 

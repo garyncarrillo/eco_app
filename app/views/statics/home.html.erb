@@ -1,4 +1,18 @@
-<h1>Statics#home</h1>
+<h1>Statics#home2</h1>
 <p>Find me in app/views/statics/home.html.erb</p>
 
+<% if current_user.role == User::ROLE_USER %>
+  <%= link_to "Agendar Cita", scheduled_agendas_path, method: :get %>
+  <br/>
+<% end %>
+
+<% if current_user.role == User::ROLE_ADMIN %>
+  <%= link_to "Puntos x Categorias", categories_path, method: :get %>
+  <br/>
+  <%= link_to "Productos", products_path, method: :get %>
+  <br/>
+<% end %>
+
+<br/>
+<br/>
 <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
