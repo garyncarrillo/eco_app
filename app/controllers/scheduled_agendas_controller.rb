@@ -21,7 +21,10 @@ class ScheduledAgendasController < ApplicationController
 
   # POST /scheduled_agendas or /scheduled_agendas.json
   def create
-    @scheduled_agenda = ScheduledAgenda.new(scheduled_agenda_params)
+    all_params = scheduled_agenda_params
+    pp all_params
+    all_params [:owner_id] = current_user.id
+    @scheduled_agenda = ScheduledAgenda.new(all_params)
 
     respond_to do |format|
       if @scheduled_agenda.save
@@ -74,6 +77,10 @@ class ScheduledAgendasController < ApplicationController
 
   def score
     scheduled_agenda = ScheduledAgenda.find(params[:id])
+
+    if scheduled_agenda.state == ScheduledAgenda::STATE_QUALITY
+      return render json: { errors: 'This one has already been liquidated' }, status: 406
+    end
     scheduled_agenda.quality
   end
 
@@ -85,7 +92,13 @@ class ScheduledAgendasController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def scheduled_agenda_params
-      params.require(:scheduled_agenda).permit(:address, :contact_name, :contact_email, :contact_phone_number, :scheduled_date)
+      params.require(:scheduled_agenda).permit(
+        :address,
+        :contact_name,
+        :contact_email,
+        :contact_phone_number,
+        :scheduled_date
+      )
     end
 
     def collect_params

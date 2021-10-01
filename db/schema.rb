@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_01_195948) do
+ActiveRecord::Schema.define(version: 2021_10_01_203102) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,8 @@ ActiveRecord::Schema.define(version: 2021_10_01_195948) do
     t.decimal "total"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "owner_id"
+    t.index ["owner_id"], name: "index_scheduled_agenda_scores_on_owner_id"
     t.index ["product_id"], name: "index_scheduled_agenda_scores_on_product_id"
     t.index ["scheduled_agenda_id"], name: "index_scheduled_agenda_scores_on_scheduled_agenda_id"
   end
@@ -73,6 +75,9 @@ ActiveRecord::Schema.define(version: 2021_10_01_195948) do
     t.date "scheduled_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "owner_id"
+    t.string "state"
+    t.index ["owner_id"], name: "index_scheduled_agendas_on_owner_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -93,6 +98,7 @@ ActiveRecord::Schema.define(version: 2021_10_01_195948) do
     t.string "invited_by_type"
     t.bigint "invited_by_id"
     t.integer "invitations_count", default: 0
+    t.decimal "score"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
     t.index ["invited_by_id"], name: "index_users_on_invited_by_id"
@@ -105,4 +111,6 @@ ActiveRecord::Schema.define(version: 2021_10_01_195948) do
   add_foreign_key "products", "categories"
   add_foreign_key "scheduled_agenda_scores", "products"
   add_foreign_key "scheduled_agenda_scores", "scheduled_agendas"
+  add_foreign_key "scheduled_agenda_scores", "users", column: "owner_id"
+  add_foreign_key "scheduled_agendas", "users", column: "owner_id"
 end

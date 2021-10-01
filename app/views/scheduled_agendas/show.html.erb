@@ -163,10 +163,11 @@
       type: 'POST',
       dataType: 'json',
       success: function(data) {
+        alert("Fue liquidado correctamente al usuario propietarario");
         console.log("todo ok ", data);
       },
       error: function(data) {
-        console.log("error ", data);
+        alert("Este agenda ya fue liquidado ");
       },
     });
   }

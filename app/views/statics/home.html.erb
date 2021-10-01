@@ -1,6 +1,12 @@
 <h1>Statics#home2</h1>
 <p>Find me in app/views/statics/home.html.erb</p>
-
+<br/>
+<p> User name:  <%= current_user.name %></p>
+<p>Role: <%= current_user.role %></p>
+<% if current_user.user?() %>
+  <p>My score: <%= current_user.score %></p>
+  <br/>
+<% end %>
 <%= link_to "Agendar Cita", scheduled_agendas_path, method: :get %>
 <br/>
 <br/>

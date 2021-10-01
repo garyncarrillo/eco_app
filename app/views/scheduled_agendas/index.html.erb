@@ -17,15 +17,26 @@
   <tbody>
     <% @scheduled_agendas.each do |scheduled_agenda| %>
       <tr>
-        <td><%= scheduled_agenda.address %></td>
-        <td><%= scheduled_agenda.contact_name %></td>
-        <td><%= scheduled_agenda.contact_email %></td>
-        <td><%= scheduled_agenda.contact_phone_number %></td>
-        <td><%= scheduled_agenda.scheduled_date %></td>
-        <td><%= link_to 'Show', scheduled_agenda %></td>
-        <% if current_user.user?() %>
-          <td><%= link_to 'Edit', edit_scheduled_agenda_path(scheduled_agenda) %></td>
-          <td><%= link_to 'Destroy', scheduled_agenda, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if current_user.user?() && current_user.id == scheduled_agenda.owner_id %>
+          <td><%= scheduled_agenda.address %></td>
+          <td><%= scheduled_agenda.contact_name %></td>
+          <td><%= scheduled_agenda.contact_email %></td>
+          <td><%= scheduled_agenda.contact_phone_number %></td>
+          <td><%= scheduled_agenda.scheduled_date %></td>
+          <td><%= link_to 'Show', scheduled_agenda %></td>
+          <% if current_user.user?() %>
+            <td><%= link_to 'Edit', edit_scheduled_agenda_path(scheduled_agenda) %></td>
+            <td><%= link_to 'Destroy', scheduled_agenda, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+        <% else  %>
+          <% if current_user.admin?() %>
+            <td><%= scheduled_agenda.address %></td>
+            <td><%= scheduled_agenda.contact_name %></td>
+            <td><%= scheduled_agenda.contact_email %></td>
+            <td><%= scheduled_agenda.contact_phone_number %></td>
+            <td><%= scheduled_agenda.scheduled_date %></td>
+            <td><%= link_to 'Show', scheduled_agenda %></td>
+          <% end %>
         <% end %>
       </tr>
     <% end %>
