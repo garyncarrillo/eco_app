@@ -1,12 +1,14 @@
 <h1>Statics#home2</h1>
 <p>Find me in app/views/statics/home.html.erb</p>
 
-<% if current_user.role == User::ROLE_USER %>
-  <%= link_to "Agendar Cita", scheduled_agendas_path, method: :get %>
-  <br/>
-<% end %>
+<%= link_to "Agendar Cita", scheduled_agendas_path, method: :get %>
+<br/>
+<br/>
+<%= link_to "Tienda virtual", articles_path, method: :get %>
+<br/>
+<br/>
 
-<% if current_user.role == User::ROLE_ADMIN %>
+<% if current_user.admin? %>
   <%= link_to "Puntos x Categorias", categories_path, method: :get %>
   <br/>
   <%= link_to "Productos", products_path, method: :get %>
