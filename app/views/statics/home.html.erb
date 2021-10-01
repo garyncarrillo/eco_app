@@ -4,7 +4,11 @@
 <%= link_to "Agendar Cita", scheduled_agendas_path, method: :get %>
 <br/>
 <br/>
-<%= link_to "Tienda virtual", articles_path, method: :get %>
+<% if current_user.admin?() %>
+  <%= link_to "Gestion de articulos", scheduled_agendas_path, method: :get %>
+<% else %>
+  <%= link_to "Tienda virtual", articles_path, method: :get %>
+<% end %>
 <br/>
 <br/>
 
