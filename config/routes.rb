@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :articles
+  resources :articles do
+    member do
+      post :claim
+    end
+  end
   resources :categories
   resources :scheduled_agendas do
     member do

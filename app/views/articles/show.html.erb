@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 
+<input style="display: none;" id="article-id" type="text" value="<%= @article.id%>" />
 <p>
   <strong>Name:</strong>
   <%= @article.name %>
@@ -15,7 +16,67 @@
   <%= @article.rate %>
 </p>
 
+<p>
+  <strong>Score:</strong>
+  <%= @article.score %>
+</p>
+
 <% if current_user.admin?() %>
   <%= link_to 'Edit', edit_article_path(@article) %> |
+  <br/>
 <% end %>
+<% if current_user.user?() %>
+  <button id="button-redemir">Redemir</button>
+<% end %>
+<br/>
+<br/>
 <%= link_to 'Back', articles_path %>
+
+<div id="dialog" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span id="dialog-close" class="close">&times;</span>
+    <p>Ingrese la cantidad de articulos que desea redemir</p>
+    <input type="text" id="text-account"/>
+    <button id="button-request">Solicitar</button>
+  </div>
+</div>
+
+<script type="text/javascript">
+
+  function redemirArticle() {
+    $.ajax({
+      url: '/articles/'+$('#article-id').val()+'/claim',
+      type: 'POST',
+      dataType: 'json',
+      data: {
+        claim: {
+          account: $('#text-account').val()
+        }
+      },
+      success: function(data) {
+        alert("Fue redimido correctamente");
+      },
+      error: function(data) {
+        alert("ERROS "+data.responseJSON.errors);
+      },
+    });
+  }
+
+  function showDialog () {
+    $('#dialog').show();
+  }
+
+  $('#dialog-close').on('click', function() {
+    $('#dialog').hide();
+  });
+
+  $('#button-redemir').on('click', function() {
+    showDialog();
+  });
+
+  $('#button-request').on('click', function() {
+    redemirArticle();
+  });
+
+</script>

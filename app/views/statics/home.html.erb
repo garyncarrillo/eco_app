@@ -11,8 +11,9 @@
 <br/>
 <br/>
 <% if current_user.admin?() %>
-  <%= link_to "Gestion de articulos", scheduled_agendas_path, method: :get %>
+  <%= link_to "Gestion de articulos de Tienda virtual", articles_path, method: :get %>
 <% else %>
+  <br/>
   <%= link_to "Tienda virtual", articles_path, method: :get %>
 <% end %>
 <br/>

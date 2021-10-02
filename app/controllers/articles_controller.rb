@@ -56,6 +56,36 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def claim
+    article = Article.find(params[:id])
+    
+    if article.stock.to_i < claim_params[:account].to_i
+      return render json: { errors: 'No Hay stock suficiente para este articulo' }, status: 406
+    end
+
+    if current_user.score < (claim_params[:account].to_i * article.score.to_i)
+      return render json: { errors: 'No tienes puntos suficientes para Redimir' }, status: 406
+    end
+
+    article_user = ArticleUser.new(
+      user_id: current_user.id,
+      article_id: article.id,
+      account: claim_params[:account],
+      score: article.score
+    )
+
+    if article_user.save
+      current_user.score =  current_user.score - (article.score * claim_params[:account].to_i)
+      current_user.save
+
+      article.stock = article.stock - claim_params[:account].to_i
+      article.save
+      render json: { article_user: article_user }, status: 200
+    else
+      render json: { errors: 'No fue posible guardar' }, status: 200
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_article
@@ -64,6 +94,10 @@ class ArticlesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def article_params
-      params.require(:article).permit(:name, :stock, :rate)
+      params.require(:article).permit(:name, :stock, :rate, :score)
+    end
+
+    def claim_params
+      params.require(:claim).permit(:account)
     end
 end
