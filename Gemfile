@@ -5,6 +5,8 @@ ruby '3.0.1'
 
 gem 'devise', ' 4.8.0'
 gem 'devise_invitable', '2.0.5'
+gem 'wicked_pdf', '2.1.0'
+gem 'wkhtmltopdf-binary', '0.12.6.5'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.4', '>= 6.1.4.1'

@@ -8,6 +8,12 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1 or /articles/1.json
   def show
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "file_name", template: "articles/show.html.erb"   # Excluding ".pdf" extension.
+      end
+    end
   end
 
   # GET /articles/new
@@ -58,7 +64,7 @@ class ArticlesController < ApplicationController
 
   def claim
     article = Article.find(params[:id])
-    
+
     if article.stock.to_i < claim_params[:account].to_i
       return render json: { errors: 'No Hay stock suficiente para este articulo' }, status: 406
     end
