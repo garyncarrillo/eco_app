@@ -1,0 +1,26 @@
+<p>
+  Usuario: <%= @certificate_products.first.certificate.user.name %>
+</p>
+<p>
+  Email: <%= @certificate_products.first.certificate.user.email %>
+</p>
+<p>
+  Fecha: <%= @certificate_products.first.created_at %>
+</p>
+<br/>
+<br/>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @certificate_products.each do |certificate_product| %>
+      <tr>
+        <td><%= certificate_product.product.description %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

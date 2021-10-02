@@ -27,9 +27,5 @@ Rails.application.routes.draw do
     resources :users
   end
 
-  namespace :mananger do
-  end
-
-  namespace :user do
-  end
+  resources :certificates, only: %i(index create show)
 end

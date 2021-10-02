@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  star_date: 2021-10-02
+  end_date: 
+  user: one
+  total_scores: MyString
+  product: one
+
+two:
+  star_date: 2021-10-02
+  end_date: 
+  user: two
+  total_scores: MyString
+  product: two

@@ -1,0 +1,15 @@
+
+<%= form_with url: certificates_path, method: "post" do |f| %>
+  <h2> Generar certificado </h2>
+  <p>Fecha inicial: <%= f.date_field :start_date %></p>
+  <br/>
+  <br/>
+  <p>Fecha final:  <%= f.date_field :end_date %> </p>
+  <br/>
+  <br/>
+  <div class="field">
+    <%= select("", "user_id", User.all.collect {|p| [ p.name, p.id ] }, { include_blank: true })%>
+  </div>
+  <br/>
+  <%= f.submit "Create" %>
+<% end %>

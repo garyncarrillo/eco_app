@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_02_152935) do
+ActiveRecord::Schema.define(version: 2021_10_02_182023) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,23 @@ ActiveRecord::Schema.define(version: 2021_10_02_152935) do
     t.boolean "is_active"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "certificate_products", force: :cascade do |t|
+    t.bigint "certificate_id", null: false
+    t.bigint "product_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["certificate_id"], name: "index_certificate_products_on_certificate_id"
+    t.index ["product_id"], name: "index_certificate_products_on_product_id"
+  end
+
+  create_table "certificates", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "total_scores"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_certificates_on_user_id"
   end
 
   create_table "collects", force: :cascade do |t|
@@ -121,6 +138,9 @@ ActiveRecord::Schema.define(version: 2021_10_02_152935) do
 
   add_foreign_key "article_users", "articles"
   add_foreign_key "article_users", "users"
+  add_foreign_key "certificate_products", "certificates"
+  add_foreign_key "certificate_products", "products"
+  add_foreign_key "certificates", "users"
   add_foreign_key "collects", "products"
   add_foreign_key "collects", "scheduled_agendas"
   add_foreign_key "products", "categories"

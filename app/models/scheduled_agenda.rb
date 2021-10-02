@@ -4,6 +4,8 @@ class ScheduledAgenda < ApplicationRecord
 
   has_many :collects
   has_many :products, through: :collects
+
+  has_one :scheduled_agenda_score
   belongs_to :owner, class_name: "User", foreign_key: 'owner_id'
 
   def quality
