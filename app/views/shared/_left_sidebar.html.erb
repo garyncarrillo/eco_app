@@ -1,0 +1,53 @@
+<div class="wrapper">
+  <div class="sidebar">
+    <div class="profile">
+      <img src="https://1.bp.blogspot.com/-vhmWFWO2r8U/YLjr2A57toI/AAAAAAAACO4/0GBonlEZPmAiQW4uvkCTm5LvlJVd_-l_wCNcBGAsYHQ/s16000/team-1-2.jpg" alt="profile_picture">
+      <h3><%= current_user.name %></h3>
+      <p> <%= current_user.role %></p>
+    </div>
+    <br/>
+    <% if current_user.user?() %>
+      <p style="color: white;">My score: <%= current_user.score %></p>
+    <% end %>
+    <br/>
+    <br/>
+    <ul>
+      <li>
+        <a href="<%= scheduled_agendas_path %>" class="active">
+          <span class="item">Agendar Cita</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="<%= articles_path %>">
+          <% if current_user.admin?() %>
+            <span class="item">Gestionar articulos</span>
+          <% else %>
+            <span class="item">Tienda Virtual</span>
+          <% end %>
+        </a>
+      </li>
+
+      <% if current_user.admin? %>
+        <li>
+            <a href="<%= categories_path %>">
+              <span class="item">Puntos x Categoria</span>
+            </a>
+        </li>
+        <li>
+            <a href="<%= products_path %>">
+              <span class="item">Productos</span>
+            </a>
+        </li>
+        <li>
+            <a href="<%= certificates_path %>">
+              <span class="item">Certificar</span>
+            </a>
+        </li>
+      <% end %>
+      <li>
+        <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+      </li>
+    </ul>
+  </div>
+</div>
