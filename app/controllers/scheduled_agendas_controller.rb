@@ -1,6 +1,6 @@
 class ScheduledAgendasController < ApplicationController
   layout "home"
-  
+
   before_action :set_scheduled_agenda, only: %i[ show edit update destroy ]
 
   # GET /scheduled_agendas or /scheduled_agendas.json

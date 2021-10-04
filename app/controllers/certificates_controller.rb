@@ -1,6 +1,6 @@
 class CertificatesController < ApplicationController
   layout "home"
-  
+
   def index
   end
 
