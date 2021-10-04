@@ -1,4 +1,6 @@
 class CategoriesController < ApplicationController
+  layout "home"
+
   before_action :set_category, only: %i[ show edit update destroy ]
 
   # GET /categories or /categories.json
