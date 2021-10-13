@@ -1,15 +1,15 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Scheduled Agendas</h1>
+<h1>Agenda cita</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Address</th>
-      <th>Contact name</th>
-      <th>Contact email</th>
-      <th>Contact phone number</th>
-      <th>Scheduled date</th>
+      <th>Direccion</th>
+      <th>nombre del contacto</th>
+      <th>email del contacto</th>
+      <th>Telefono del contacto</th>
+      <th>Fecha de recogida</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -23,10 +23,10 @@
           <td><%= scheduled_agenda.contact_email %></td>
           <td><%= scheduled_agenda.contact_phone_number %></td>
           <td><%= scheduled_agenda.scheduled_date %></td>
-          <td><%= link_to 'Show', scheduled_agenda %></td>
+          <td><%= link_to 'Mostrar', scheduled_agenda %></td>
           <% if current_user.user?() %>
-            <td><%= link_to 'Edit', edit_scheduled_agenda_path(scheduled_agenda) %></td>
-            <td><%= link_to 'Destroy', scheduled_agenda, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><%= link_to 'Editar', edit_scheduled_agenda_path(scheduled_agenda) %></td>
+            <td><%= link_to 'Eliminar', scheduled_agenda, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           <% end %>
         <% else  %>
           <% if current_user.admin?() %>
@@ -35,7 +35,7 @@
             <td><%= scheduled_agenda.contact_email %></td>
             <td><%= scheduled_agenda.contact_phone_number %></td>
             <td><%= scheduled_agenda.scheduled_date %></td>
-            <td><%= link_to 'Show', scheduled_agenda %></td>
+            <td><%= link_to 'Mostrar', scheduled_agenda %></td>
           <% end %>
         <% end %>
       </tr>
@@ -46,5 +46,5 @@
 <br>
 
 <% if current_user.user?() %>
-  <%= link_to 'New Scheduled Agenda', new_scheduled_agenda_path %>
+  <%= link_to 'Nueva agenda', new_scheduled_agenda_path %>
 <% end %>

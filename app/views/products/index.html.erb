@@ -1,15 +1,15 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Products</h1>
+<h1>Productos</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Description</th>
-      <th>High</th>
-      <th>Width</th>
-      <th>Weight</th>
-      <th>Observation</th>
+      <th>descripcion</th>
+      <th>Alto</th>
+      <th>Ancho</th>
+      <th>Peso</th>
+      <th>Observacion</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -22,9 +22,9 @@
         <td><%= product.width %></td>
         <td><%= product.weight %></td>
         <td><%= product.observation %></td>
-        <td><%= link_to 'Show', product %></td>
-        <td><%= link_to 'Edit', edit_product_path(product) %></td>
-        <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Mostrar', product %></td>
+        <td><%= link_to 'Editar', edit_product_path(product) %></td>
+        <td><%= link_to 'Eliminar', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -32,5 +32,5 @@
 
 <br>
 
-<%= link_to 'New Product', new_product_path %>
+<%= link_to 'Nuevo productos', new_product_path %>
 <br/>

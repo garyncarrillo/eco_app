@@ -30,7 +30,7 @@ class ScheduledAgendasController < ApplicationController
 
     respond_to do |format|
       if @scheduled_agenda.save
-        format.html { redirect_to @scheduled_agenda, notice: "Scheduled agenda was successfully created." }
+        format.html { redirect_to @scheduled_agenda, notice: "Fue agendado correctamente." }
         format.json { render :show, status: :created, location: @scheduled_agenda }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -43,7 +43,7 @@ class ScheduledAgendasController < ApplicationController
   def update
     respond_to do |format|
       if @scheduled_agenda.update(scheduled_agenda_params)
-        format.html { redirect_to @scheduled_agenda, notice: "Scheduled agenda was successfully updated." }
+        format.html { redirect_to @scheduled_agenda, notice: "La cita fue reprogramada correctamente." }
         format.json { render :show, status: :ok, location: @scheduled_agenda }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -56,7 +56,7 @@ class ScheduledAgendasController < ApplicationController
   def destroy
     @scheduled_agenda.destroy
     respond_to do |format|
-      format.html { redirect_to scheduled_agendas_url, notice: "Scheduled agenda was successfully destroyed." }
+      format.html { redirect_to scheduled_agendas_url, notice: "La agena fue eliminada correctamente." }
       format.json { head :no_content }
     end
   end

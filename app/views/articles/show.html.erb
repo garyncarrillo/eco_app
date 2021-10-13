@@ -2,27 +2,27 @@
 
 <input style="display: none;" id="article-id" type="text" value="<%= @article.id%>" />
 <p>
-  <strong>Name:</strong>
+  <strong>Nombre:</strong>
   <%= @article.name %>
 </p>
 
 <p>
-  <strong>Stock:</strong>
+  <strong>Cantidad:</strong>
   <%= @article.stock %>
 </p>
 
 <p>
-  <strong>Rate:</strong>
+  <strong>Costo:</strong>
   <%= @article.rate %>
 </p>
 
 <p>
-  <strong>Score:</strong>
+  <strong>Puntos:</strong>
   <%= @article.score %>
 </p>
 
 <% if current_user.admin?() %>
-  <%= link_to 'Edit', edit_article_path(@article) %> |
+  <%= link_to 'Editar', edit_article_path(@article) %> |
   <br/>
 <% end %>
 <% if current_user.user?() %>
@@ -30,7 +30,7 @@
 <% end %>
 <br/>
 <br/>
-<%= link_to 'Back', articles_path %>
+<%= link_to 'Atras', articles_path %>
 
 <div id="dialog" class="modal">
   <!-- Modal content -->

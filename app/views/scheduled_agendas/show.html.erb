@@ -1,27 +1,27 @@
 <p id="notice"><%= notice %></p>
 <input style="display: none;" id="scheduled-agenda-id" type="text" value="<%= @scheduled_agenda.id%>" />
 <p>
-  <strong>Address:</strong>
+  <strong>Direccion:</strong>
   <%= @scheduled_agenda.address %>
 </p>
 
 <p>
-  <strong>Contact name:</strong>
+  <strong>Nombre del conctacto:</strong>
   <%= @scheduled_agenda.contact_name %>
 </p>
 
 <p>
-  <strong>Contact email:</strong>
+  <strong>Email del contacto:</strong>
   <%= @scheduled_agenda.contact_email %>
 </p>
 
 <p>
-  <strong>Contact phone number:</strong>
+  <strong>Telefono del contacto:</strong>
   <%= @scheduled_agenda.contact_phone_number %>
 </p>
 
 <p>
-  <strong>Scheduled date:</strong>
+  <strong>Fecha de recogida:</strong>
   <%= @scheduled_agenda.scheduled_date %>
 </p>
 
@@ -43,11 +43,11 @@
   <thead>
     <tr>
       <th>id</th>
-      <th>Description</th>
-      <th>High</th>
-      <th>Width</th>
-      <th>Weight</th>
-      <th>Observation</th>
+      <th>Descripcion</th>
+      <th>Alto</th>
+      <th>Ancho</th>
+      <th>Peso</th>
+      <th>Observacion</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -69,8 +69,8 @@
 <br>
 <br>
 <br>
-<%= link_to 'Edit', edit_scheduled_agenda_path(@scheduled_agenda) %> |
-<%= link_to 'Back', scheduled_agendas_path %>
+<%= link_to 'Editar', edit_scheduled_agenda_path(@scheduled_agenda) %> |
+<%= link_to 'Atras', scheduled_agendas_path %>
 
 <br/>
 <br/>
@@ -87,8 +87,8 @@
         <thead>
           <tr>
             <th>Id</th>
-            <th>Description</th>
-            <th>Add</th>
+            <th>Descripcion</th>
+            <th>Adicionar</th>
             <th colspan="3"></th>
           </tr>
         </thead>
