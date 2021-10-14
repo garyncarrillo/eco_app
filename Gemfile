@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.0.1'
-
+gem  'rename'
 gem 'devise', ' 4.8.0'
 gem 'devise_invitable', '2.0.5'
 gem 'wicked_pdf', '2.1.0'
