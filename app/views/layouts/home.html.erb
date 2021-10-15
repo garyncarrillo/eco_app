@@ -10,12 +10,41 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <%= render partial: "shared/left_sidebar" %>
   <body>
-    <div style=" margin-left: 400px; margin-top: 100px">
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
-      <%= yield %>
-    <div>
+    <input type="checkbox" id="abrir-cerrar" name="abrir-cerrar" value="">
+    <label for="abrir-cerrar">&#9776; <span class="abrir">Abrir</span><span class="cerrar">Cerrar</span></label>
+    <div id="sidebar" class="sidebar">
+        <ul class="menu">
+            <li><a href="<%= scheduled_agendas_path %>">Agendar Cita 1</a></li>
+            <li>
+              <a href="<%= articles_path %>">
+                <% if current_user.admin?() %>
+                  <span class="item">Gestionar articulos</span>
+                <% else %>
+                  <span class="item">Tienda Virtual</span>
+                <% end %>
+              </a>
+            </li>
+            <% if current_user.admin? %>
+              <li>
+                <a href="<%= categories_path %>">Puntos x Categoria</a>
+              </li>
+              <li>
+                <a href="<%= products_path %>">Productos</a>
+              </li>
+              <li><a href="<%= certificates_path %>">Certificar</a></li>
+            <% end %>
+            <li>
+              <%= link_to "Cerrar session", destroy_user_session_path, method: :delete %>
+            </li>
+        </ul>
+    </div>
+    <div id="contenido">
+      <div style=" margin-left: 100px; margin-top: 100px">
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+        <%= yield %>
+      <div>
+    </div>
   </body>
 </html>
