@@ -9,26 +9,26 @@
 <table>
   <thead>
     <tr>
-      <th>Nombre</th>
-      <th>Cantidad</th>
-      <th>Costo</th>
-      <th>Puntos</th>
-      <th colspan="3"></th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Cantidad</th>
+      <th scope="col">Costo</th>
+      <th scope="col">Puntos</th>
+      <th scope="col" colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @articles.each do |article| %>
       <tr>
-        <td><%= article.name %></td>
-        <td><%= article.stock %></td>
-        <td><%= article.rate %></td>
-        <td><%= article.score %></td>
-        <td><%= link_to 'Mostrar', article %></td>
+        <td data-label="Nombre"><%= article.name %></td>
+        <td data-label="Cantidad"><%= article.stock %></td>
+        <td data-label="Costo"><%= article.rate %></td>
+        <td data-label="Puntos"><%= article.score %></td>
+        <td data-label="Mostrar"><%= link_to 'Mostrar', article %></td>
 
         <% if current_user.admin?() %>
-          <td><%= link_to 'Editar', edit_article_path(article) %></td>
-          <td><%= link_to 'Eliminar', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td data-label="Editar"><%= link_to 'Editar', edit_article_path(article) %></td>
+          <td data-label="Eliminar"><%= link_to 'Eliminar', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
       </tr>
     <% end %>
